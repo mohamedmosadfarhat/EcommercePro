@@ -76,32 +76,4 @@ return MultiProvider(
   }
 }
 
-// MultiProvider(
-      
-//       providers: [
-//              ChangeNotifierProvider<AdminMode>(create: (context)=>AdminMode()),
-//               ChangeNotifierProvider<CartItem>(
-//                 create: (context) => CartItem(),
-//               ),
-
-//       ],
-//       child: MaterialApp(
-//         initialRoute: Login.id,
-//        routes:{
-//           Login.id:(context)=>Login(),
-//          SignUp.id:(context)=>SignUp(),
-//          HomePage.id:(context)=>HomePage(),
-//          Admin.id:(context)=>Admin(),
-//          AddProduct.id:(context)=>AddProduct(),
-//          EditProduct.id:(context)=>EditProduct(),
-//          ManageProducts.id:(context)=>ManageProducts(),
-//         ProductInfo.id:(context)=>ProductInfo(),
-//         CardItemScreen.id:(context)=>CardItemScreen(),
-//         OrdersScreen.id:(context)=>OrdersScreen(),
-//         OrderDetails.id:(context)=>OrderDetails(),
-    
-//        },
-//        debugShowCheckedModeBanner: false
-       
-//       ),
-//     );
+   );
