@@ -1,6 +1,6 @@
 
 
-import 'package:buyit/screens/signup.dart';
+import 'package:ecommerce/screens/signup.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class Auth{

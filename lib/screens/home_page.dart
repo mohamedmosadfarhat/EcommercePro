@@ -1,14 +1,17 @@
-import 'package:buyit/models/product.dart';
-import 'package:buyit/screens/card_item.dart';
-import 'package:buyit/screens/edit_product.dart';
-import 'package:buyit/screens/login.dart';
-import 'package:buyit/screens/product_info.dart';
-import 'package:buyit/screens/signup.dart';
-import 'package:buyit/services/auth.dart';
-import 'package:buyit/services/store.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/card_item.dart';
+import 'package:ecommerce/screens/developers.dart';
+import 'package:ecommerce/screens/edit_product.dart';
+import 'package:ecommerce/screens/login.dart';
+import 'package:ecommerce/screens/navbar.dart';
+import 'package:ecommerce/screens/product_info.dart';
+import 'package:ecommerce/screens/signup.dart';
+import 'package:ecommerce/services/auth.dart';
+import 'package:ecommerce/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:ecommerce/screens/about_app.dart';
 
 import '../constants.dart';
 
@@ -36,112 +39,175 @@ List<Product> _products=[];
     List<Product> _products = [];
     return Stack(
       children: [
+        
         DefaultTabController(
           length: 4,
           child: Scaffold(
-bottomNavigationBar: BottomNavigationBar(
-  type: BottomNavigationBarType.fixed,
-  fixedColor: kMainColor,
-  currentIndex: _bottombarindex,
-  //backgroundColor: Colors.black,
-  onTap: (value) async{
-    if(value==2)
-    {
-      SharedPreferences pref=await SharedPreferences.getInstance();
-      pref.clear();
-      Auth _auth=Auth();
-      _auth.signOut();
-      Navigator.popAndPushNamed(context,Login.id);
-    }
-    setState(() {
-_bottombarindex=value;
-      
-    });
-  },
-        items: [
-          
-              //  BottomNavigationBarItem(
-              //    label: "hg",
-              //    icon: Icon(Icons.person)
-              //    ),
-                  BottomNavigationBarItem(
-                    label: "hgc",
-                 icon: Icon(Icons.person)),
-                 BottomNavigationBarItem(
-                   label: "gh",
-                  icon: Icon(Icons.person)),
-                 BottomNavigationBarItem(
-                   label: "sign out",
-                 icon: Icon(Icons.close)),
-
-]),
-
-           appBar: AppBar(
-             backgroundColor: Colors.white,
+              backgroundColor: Colors.grey[10],
+            drawer: MyDrawer(),
+            
+            appBar: AppBar(
+              
+             actions: [
+                    IconButton(
+                              icon: const Icon(Icons.shopping_cart),
+                              
+                              onPressed: () {
+                                Navigator.pushNamed(context, CardItemScreen.id);
+                              },
+                    ), //IconButton
+            
+             ],
+             iconTheme: IconThemeData(color: Colors.white,size: 25),
+              backgroundColor: basiccolor,
+              title: Row(
+               // mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                            'Sell Now'.toUpperCase(),
+                            style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: Colors.white),
+                          ),
+                ],
+              ),
+                      
+                       
+                      //
              bottom: TabBar(
                
-               indicatorColor: kMainColor,
+               indicatorColor: Colors.white,
                onTap: (value){
                   setState(() {
                     _tabBarIndex=value;
                   });
                },
+              
                tabs: [
+                
                Text("Jackets",style: TextStyle(
-                      color: _tabBarIndex == 0 ? Colors.black : kUnActiveColor,
+                      color: _tabBarIndex == 0 ? kSecondaryColor :kUnActiveColor,
                       fontSize: _tabBarIndex == 0 ? w*(.04) : null,),),
                Text("trousers",style: TextStyle(
-                      color: _tabBarIndex == 1 ? Colors.black : kUnActiveColor,
+                      color: _tabBarIndex == 1 ? kSecondaryColor : kUnActiveColor,
                       fontSize: _tabBarIndex == 1 ? w*(.04) : null,),),
                Text("T-shirt",style: TextStyle(
-                      color: _tabBarIndex == 2 ? Colors.black : kUnActiveColor,
+                      color: _tabBarIndex == 2 ? kSecondaryColor : kUnActiveColor,
                       fontSize: _tabBarIndex == 2 ? w*(.04) : null,),),
+                     
                Text("Shoes",style: TextStyle(
-                      color: _tabBarIndex == 3 ? Colors.black : kUnActiveColor,
+                      color: _tabBarIndex == 3 ? kSecondaryColor: kUnActiveColor,
                       fontSize: _tabBarIndex == 3 ? w*(.04) : null,),),
-
-
+              
+              
              ],),
-           ),
+                     
+                     ),
+                     bottomNavigationBar: BottomNavigationBar(
+             type: BottomNavigationBarType.fixed,
+             fixedColor: kSecondaryColor,
+            currentIndex: _bottombarindex,
+             unselectedItemColor: kUnActiveColor,
             
-             
+            backgroundColor:basiccolor,
+            onTap: (value) async{
+            if(value==3)
+            {
+              SharedPreferences pref=await SharedPreferences.getInstance();
+              pref.clear();
+              Auth _auth=Auth();
+              _auth.signOut();
+              Navigator.popAndPushNamed(context,Login.id);
+            }
+            if(value==1)
+            {
+             Navigator.popAndPushNamed(context,AboutApp.id);
+            
+            } if(value==2)
+            {
+             Navigator.popAndPushNamed(context,Developers.id);
+            
+            }
+            // else{
+            
+            //  Navigator.popAndPushNamed(context,Profile.id);
+            
+            // }
+            setState(() {
+            _bottombarindex=value;
+              
+            });
+            },
+                items: [
+            
+               BottomNavigationBarItem(
+                   label: "home page",
+                  icon: Icon(Icons.home)),
+                  BottomNavigationBarItem(
+                    label: "about app",
+                 icon: Icon(Icons.app_shortcut_sharp)),
+                   BottomNavigationBarItem(
+                   label: "about us",
+                  icon: Icon(Icons.person)),
+            
+                 BottomNavigationBarItem(
+                   label: "sign out",
+                 icon: Icon(Icons.close)),
+                ]
+            ),
+            
+                     
+            
             body: TabBarView(
               children: [
                productview(kJackets),
                productview(kTrousers),
                productview(kTshirts),
                productview(kShoes),
-               
+           
               ],
             ),
+           
           ),
         )
-,
-//=========
-           Material(
-             child: Padding(
-               padding: const EdgeInsets.fromLTRB(20,30,20,0),
-               child: Container(
-                  height: MediaQuery.of(context).size.height * .1,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        'Discover'.toUpperCase(),
-                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                      GestureDetector(
-                          onTap: () {
-                           // Navigator.pop(context);
-                        Navigator.pushNamed(context, CardItemScreen.id);
-                        Navigator.pop(context);
-                          },
-                          child: Icon(Icons.shopping_cart))
-                    ],
-                  ),
-                ),
-             ),
-           ),
+    ,
+    //=========
+          //  Material(
+          //    child: Padding(
+          //      padding: const EdgeInsets.fromLTRB(20,30,20,0),
+          //      child: Container(
+          //         height: MediaQuery.of(context).size.height * .1,
+          //         child: Row(
+          //            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //           children: [
+    
+          //             Text(
+          //               'Sell Now'.toUpperCase(),
+          //               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          //             ),
+                      
+          //             GestureDetector(
+          //                 onTap: () {
+          //                  // Navigator.pop(context);
+          //               Navigator.pushNamed(context, CardItemScreen.id);
+          //               // Navigator.pop(context);
+          //                 },
+          //                 child: Icon(Icons.shopping_cart)),
+          //             // GestureDetector(
+          //             //   onTap: () {
+          //             //     // Navigator.pop(context);
+          //             //     Navigator.pushNamed(context, CardItemScreen.id);
+          //             //     // Navigator.pop(context);
+          //             //   },
+          //             //   child: Text(
+          //             //     'about us',
+          //             //     style: TextStyle(fontSize: 13, fontWeight: FontWeight.bold),
+          //             //   ),
+          //             //   ),
+          //           ],
+          //         ),
+          //       ),
+          //    ),
+          //  ),
+        
            //========
       ],
     );
@@ -170,15 +236,7 @@ Widget productview(String productcatogory){
               ));
               }
             }
-           // List<Product> _products = [];
-
-    //       _products = [...products];     
-    //   products.clear();
-    //       for (var product in _products) {
-    //   if (product.pCategory == kJackets) {
-    //     products.add(product);
-    //   }
-    // }
+         
             //=====
  return GridView.builder(
    
@@ -232,46 +290,7 @@ Widget productview(String productcatogory){
                 ),
               )
           
-              
-              //  Stack(
-              //    cheldern[
-                 
-              //  Positioned.fill(
-              //            child: Image(
-              //             fit: BoxFit.fill,
-              //              image: AssetImage("${products[index].pLocation}")
-              //              ),
-              //          ),
-                  
-              //         Positioned(
-              //           bottom: 0,
-              //           child: Opacity(
-              //             opacity: 0.6,
-              //             child: Container(
-              //               width: MediaQuery.of(context).size.width,
-              //               height: 60,
-              //               color: Colors.white,
-              //               child: Padding(
-              //                 padding: const EdgeInsets.all(8.0),
-              //                 child: Column(
-              //                  // mainAxisAlignment: MainAxisAlignment.center,
-              //                  children: [
-              //                     Text("${products[index].pName}",style: TextStyle(fontWeight: FontWeight.bold),),
-              //                     Text("\$${products[index].pPrice}"),
-              //                   ]),
-              //               ),
-              //             ),
-              //           ),
-              //         )
-                  
-                  
-              //         ],
-                 //   ),
-           // ),
-            
-               // ),
-              //)
-
+         
 
 
 
@@ -280,7 +299,7 @@ Widget productview(String productcatogory){
           }
           else {
             // I'm stuck in here
-            return Center(child: Text('Loading...'));
+            return Center(child: CircularProgressIndicator());
           }
         },
       );
@@ -288,84 +307,3 @@ Widget productview(String productcatogory){
    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  //  Padding(
-  //               padding: const EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-  //               child: GestureDetector(
-  //                 onTapUp: (details){
-  //                    double dx = details.globalPosition.dx;
-  //                   double dy = details.globalPosition.dy;
-  //                   double dx2 = MediaQuery.of(context).size.width - dx;
-  //                   double dy2 = MediaQuery.of(context).size.width - dy;
-
-  //                   showMenu(context: context,
-  //                   position: RelativeRect.fromLTRB(dx, dy, dx2, dy2),
-  //                    items: [
-  //                       PopupMenuItem(
-  //                         onTap: () {
-                          
-  //                             Navigator.pushNamed(context, EditProduct.id,arguments: products[index]);
-  //                           Navigator.of(context).pushNamed(SignUp.id);
-
-  //                         },
-  //                         child: Text("edit")),
-  //                       PopupMenuItem(
-  //                         onTap: (){
-  //                           //Navigator.pushNamed(context, EditProduct.id);
-  //                           //Navigator.of(context).pushNamed(SignUp.id);
-                          
-  //                          // _store.deleteProduct(products[index].pId);
-
-  //                         },
-  //                         child: Text("delete")),
-
-  //                    ]
-                      
-                      
-                      
-  //                     );
-  //                 },
-
-
-  //                 child:

@@ -2,10 +2,10 @@
 
 
 
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
-import 'package:buyit/services/store.dart';
-import 'package:buyit/wedgits/custom_text_field.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/services/store.dart';
+import 'package:ecommerce/wedgits/custom_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

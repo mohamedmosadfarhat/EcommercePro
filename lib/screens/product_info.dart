@@ -1,9 +1,9 @@
 import 'dart:math';
 
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
-import 'package:buyit/prvider/card_item.dart';
-import 'package:buyit/screens/card_item.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/prvider/card_item.dart';
+import 'package:ecommerce/screens/card_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart';
@@ -93,55 +93,59 @@ class _ProductInfoState extends State<ProductInfo> {
                               
                             ],
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              ClipOval(
-                                child: Material(
-                                  color: Colors.green,
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      setState(() {
-                                        quantity++;
-                                      });
-                                    
-
-                                    },
-                                    child: SizedBox(
-                                      width: 28,
-                                      height: 28,
-                                      child: Icon(Icons.add),
-                                      
-                                    ),
-                                  ),
-                                ),
-                              ),
-                             // SizedBox(height: 10,),
-                              Text("${quantity.toString()}",style: TextStyle(fontSize: 50),),
-                               ClipOval(
-                                child: Material(
-                                  color: Colors.green,
-                                  child: GestureDetector(
-                                    onTap: (){
-                                      if(quantity>0)
-                                      {
+                          Container(
+                            color: Colors.white,
+                            child: Row(
+                              
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ClipOval(
+                                  child: Material(
+                                    color: basiccolor,
+                                    child: GestureDetector(
+                                      onTap: (){
                                         setState(() {
-                                          quantity--;
+                                          quantity++;
                                         });
-                                      }
-                                    },
-                                    child: SizedBox(
-                                      width: 28,
-                                      height: 28,
-                                      child: Icon(Icons.remove),
+                                      
+                          
+                                      },
+                                      child: SizedBox(
+                                        width: 28,
+                                        height: 28,
+                                        child: Icon(Icons.add),
+                                        
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-
-                            ],
-
-
+                               // SizedBox(height: 10,),
+                                Text("${quantity.toString()}",style: TextStyle(fontSize: 50),),
+                                 ClipOval(
+                                  child: Material(
+                                    color: basiccolor,
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        if(quantity>0)
+                                        {
+                                          setState(() {
+                                            quantity--;
+                                          });
+                                        }
+                                      },
+                                      child: SizedBox(
+                                        width: 28,
+                                        height: 28,
+                                        child: Icon(Icons.remove),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                          
+                              ],
+                          
+                          
+                            ),
                           )
 
                          
@@ -182,7 +186,7 @@ class _ProductInfoState extends State<ProductInfo> {
                 }
                         }, 
                           style: ElevatedButton.styleFrom(  
-                             backgroundColor: Colors.green
+                             backgroundColor: basiccolor
                                 
                                 ),
                                 

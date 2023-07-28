@@ -1,10 +1,10 @@
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
-import 'package:buyit/screens/order_details.dart';
-import 'package:buyit/services/store.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/order_details.dart';
+import 'package:ecommerce/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-//import 'package:buyit/models/product.dart';
+//import 'package:ecommerce/models/product.dart';
 
 class OrdersScreen extends StatelessWidget {
   static String id = 'OrdersScreen';

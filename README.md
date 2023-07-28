@@ -1,4 +1,4 @@
-# buyit
+# ecommerce
 
 A new Flutter project.
 

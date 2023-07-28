@@ -1,13 +1,14 @@
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
-import 'package:buyit/prvider/card_item.dart';
-import 'package:buyit/screens/edit_product.dart';
-import 'package:buyit/screens/product_info.dart';
-import 'package:buyit/screens/signup.dart';
-import 'package:buyit/services/store.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/prvider/card_item.dart';
+import 'package:ecommerce/screens/edit_product.dart';
+import 'package:ecommerce/screens/product_info.dart';
+import 'package:ecommerce/screens/signup.dart';
+import 'package:ecommerce/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class CardItemScreen extends StatelessWidget {
@@ -31,9 +32,9 @@ class CardItemScreen extends StatelessWidget {
           onTap: (){
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back,color: Colors.black,)),
-        backgroundColor: Colors.white,
-        title: Text("My Cart",style: TextStyle(color: Colors.black),),),
+          child: Icon(Icons.arrow_back,color: Colors.white,)),
+        backgroundColor: basiccolor,
+        title: Text("My Cart",style: TextStyle(color: Colors.white),),),
       body: Column(
         
         children: [
@@ -80,13 +81,8 @@ onTapUp: (details){
                           child: Text("edit")),
                         PopupMenuItem(
                           onTap: (){
-                            //Navigator.pushNamed(context, EditProduct.id);
-                            //Navigator.of(context).pushNamed(SignUp.id);
-                            Navigator.pop(context);
-
                            Provider.of<CartItem>(context,listen: false).deleteProduct(products[index]);
                            // _store.deleteProduct(products[index].pId);
-                          
 
                           },
                           child: Text("delete")),
@@ -161,13 +157,13 @@ onTapUp: (details){
               height: botorder,
               child: ElevatedButton(onPressed: (){
                 //=====
+                
                 showDialogj(products,context);
                
 
-
               },
               style: ElevatedButton.styleFrom(  
-                                 backgroundColor: Colors.teal,
+                                 backgroundColor:basiccolor,
                                  
                                     
                                     ),
@@ -193,7 +189,7 @@ onTapUp: (details){
                 AlertDialog alertDialog=AlertDialog(
                   actions: [
                     MaterialButton(onPressed: (){
-                     
+                     if(adress!=null&&adress.length>4){
                      try{
                       Store _store=Store();
                       _store.storeOrders({
@@ -209,8 +205,10 @@ onTapUp: (details){
 
                      }
 
+                     }else{
+                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("please enter the adress  more than 8 characters")));
 
-
+                     }
                     },
                     child: Text("confirm"),
                     )

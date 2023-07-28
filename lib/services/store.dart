@@ -1,7 +1,7 @@
 //import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Store{

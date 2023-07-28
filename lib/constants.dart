@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-
-const kMainColor = Color(0xFF348685);
-const kSecondaryColor = Color(0xFFFFE6AC);
+//const kMainColor = Color(Colors.white);
+//const kMainColor = Color(0xFFFFFFFF);
+const kMainColor = Color(0xFFFFFFF1);
+const kSecondaryColor = Color(0xFFFFFFFF);
 const kSecondaryColor2 = Color(0xFFFFEfC);
+//const basiccolor = Color(0xffDA4C2D);
+const basiccolor = Color(0xFFFC7C48);
 
 const kProductName = 'productName';
 const kProductPrice = 'productPrice';

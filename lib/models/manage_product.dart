@@ -3,12 +3,12 @@
 //import 'dart:html';
 //import 'dart:math';
 
-import 'package:buyit/constants.dart';
-import 'package:buyit/models/product.dart';
-import 'package:buyit/screens/add_product.dart';
-import 'package:buyit/screens/edit_product.dart';
-import 'package:buyit/screens/signup.dart';
-import 'package:buyit/services/store.dart';
+import 'package:ecommerce/constants.dart';
+import 'package:ecommerce/models/product.dart';
+import 'package:ecommerce/screens/add_product.dart';
+import 'package:ecommerce/screens/edit_product.dart';
+import 'package:ecommerce/screens/signup.dart';
+import 'package:ecommerce/services/store.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 

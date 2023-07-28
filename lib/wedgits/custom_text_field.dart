@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:buyit/constants.dart';
+import 'package:ecommerce/constants.dart';
 import 'package:flutter/material.dart';
 
 class CstomTextField extends StatelessWidget {
